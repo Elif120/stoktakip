@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1216012110",
+    "project_id": "stoktakip11",
+    "storage_bucket": "stoktakip11.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1216012110:android:ec4b52b89b0b662a4cc81f",
+        "android_client_info": {
+          "package_name": "com.example.stoktakip1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGfd1ERgskHZFv_3a9_dy_juxxaX62d2Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
