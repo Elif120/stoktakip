@@ -5,6 +5,30 @@ import '../models/urun.dart';
 import '../services/firebase_service.dart';
 import '../utils/helpers.dart';
 
+class TLIcon extends StatelessWidget {
+  final double? size;
+  final Color? color;
+
+  const TLIcon({Key? key, this.size, this.color}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size ?? 24,
+      height: size ?? 24,
+      alignment: Alignment.center,
+      child: Text(
+        '₺',
+        style: TextStyle(
+          fontSize: (size ?? 24) * 0.8,
+          fontWeight: FontWeight.bold,
+          color: color ?? Colors.black,
+        ),
+      ),
+    );
+  }
+}
+
 class IstatistikSayfasi extends StatefulWidget {
   final List<Urun> urunler;
 
@@ -179,10 +203,9 @@ class _IstatistikSayfasiState extends State<IstatistikSayfasi>
                 Icons.inventory,
                 Colors.blue,
               ),
-              _ozetKarti(
+              _ozetKartiTL(
                 'Toplam Değer',
                 AppHelpers.paraFormati(_istatistikler!['toplam_deger']),
-                Icons.attach_money,
                 Colors.green,
               ),
               _ozetKarti(
@@ -392,6 +415,43 @@ class _IstatistikSayfasiState extends State<IstatistikSayfasi>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon, color: renk, size: 32),
+            SizedBox(height: 8),
+            FittedBox(
+              child: Text(
+                deger,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: renk,
+                ),
+              ),
+            ),
+            SizedBox(height: 4),
+            FittedBox(
+              child: Text(
+                baslik,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey[600],
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _ozetKartiTL(String baslik, String deger, Color renk) {
+    return Card(
+      elevation: 4,
+      child: Container(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TLIcon(size: 32, color: renk),
             SizedBox(height: 8),
             FittedBox(
               child: Text(

@@ -7,6 +7,30 @@ import '../models/urun.dart';
 import '../services/firebase_service.dart';
 import '../utils/helpers.dart';
 
+class TLIcon extends StatelessWidget {
+  final double? size;
+  final Color? color;
+
+  const TLIcon({Key? key, this.size, this.color}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size ?? 24,
+      height: size ?? 24,
+      alignment: Alignment.center,
+      child: Text(
+        '₺',
+        style: TextStyle(
+          fontSize: (size ?? 24) * 0.8,
+          fontWeight: FontWeight.bold,
+          color: color ?? Colors.black,
+        ),
+      ),
+    );
+  }
+}
+
 class UrunEkleDuzenle extends StatefulWidget {
   final Urun? urun;
   final String? barkod;
@@ -353,7 +377,7 @@ class _UrunEkleDuzenleState extends State<UrunEkleDuzenle> {
             controller: _fiyatController,
             decoration: InputDecoration(
               labelText: 'Fiyat (₺) *',
-              prefixIcon: Icon(Icons.attach_money),
+              prefixIcon: TLIcon(size: 24, color: Colors.grey[600]),
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
               filled: true,
               fillColor: Colors.grey[50],
@@ -450,9 +474,9 @@ class _UrunEkleDuzenleState extends State<UrunEkleDuzenle> {
     try {
       final XFile? image = await _picker.pickImage(
         source: source ?? ImageSource.gallery,
-        maxWidth: 1024,
-        maxHeight: 1024,
-        imageQuality: 80,
+        maxWidth: 800,        // Daha küçük boyut
+        maxHeight: 800,       // Daha küçük boyut
+        imageQuality: 60,     // Daha düşük kalite (daha küçük dosya)
       );
 
       if (image != null) {
